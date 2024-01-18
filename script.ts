@@ -1,16 +1,42 @@
 
 
 const gameBoard : HTMLElement | null = document.getElementById('game-board');
-const input = document.getElementById("choixNombre") as HTMLInputElement;
 
-let test = input.addEventListener("input", (event) => {
-  let target = event.target as HTMLInputElement;
-  let inputValue = target.value as unknown;
+const cards : string[] = [
+  'https://picsum.photos/id/237/100/100', 
+  'https://picsum.photos/id/238/100/100',
+  'https://picsum.photos/id/239/100/100',
+  'https://picsum.photos/id/240/100/100',
+  'https://picsum.photos/id/241/100/100',
+  'https://picsum.photos/id/242/100/100',
+  'https://picsum.photos/id/243/100/100',
+  'https://picsum.photos/id/244/100/100'
+];
+
+let input = document.getElementById("choixNombre") as HTMLInputElement;
+input.addEventListener("keyup", function(e) {
+        if (e.code === 'Enter') {
+          let boutonValider = document.getElementById("valider") as HTMLButtonElement
+          boutonValider.click();
+        }
+    });
+function load() {
+  window.location.reload();
+}
+
+function getValue() {
+
+  let input = document.getElementById("choixNombre") as HTMLInputElement;
+  let inputValue = input.value as unknown;
   let nbOfPairs = inputValue as number;
+  input.value='';
+  let boutonValider = document.getElementById("valider") as HTMLButtonElement;
+  boutonValider.setAttribute("disabled", "disabled");
 
   let cardsToPlay : string[] = [];
-  console.log(cardsToPlay);
+
   let selectedCards : HTMLElement[] = [];
+  
   function createCard(CardUrl : string) : any {
       const card = document.createElement('div');
       card.classList.add('card');
@@ -25,33 +51,22 @@ let test = input.addEventListener("input", (event) => {
       return card;    
     }
 
-    const cards : string[] = [
-      'https://picsum.photos/id/237/100/100', 
-      'https://picsum.photos/id/238/100/100',
-      'https://picsum.photos/id/239/100/100',
-      'https://picsum.photos/id/240/100/100',
-      'https://picsum.photos/id/241/100/100',
-      'https://picsum.photos/id/242/100/100',
-      'https://picsum.photos/id/243/100/100',
-      'https://picsum.photos/id/244/100/100'
-    ];
-  
-    function duplicateArray(arraySimple : string[]) {
-      let arrayDouble : string[] = [];
-      arrayDouble.push(...arraySimple);
-      arrayDouble.push(...arraySimple);
-        return arrayDouble;
-    }
-  
-    function shuffleArray (arrayToshuffle : string[]) : string[] {
-      const arrayShuffled = arrayToshuffle.sort(() => 0.5 - Math.random());
-      return arrayShuffled;
+  function duplicateArray(arraySimple : string[]) {
+    let arrayDouble : string[] = [];
+    arrayDouble.push(...arraySimple);
+    arrayDouble.push(...arraySimple);
+      return arrayDouble;
   }
-  
-  let shuffledCards : string[] = shuffleArray(cards);
-  cardsToPlay= selectCards(nbOfPairs, shuffledCards);
-  
-  function selectCards (nb : number, array : string []) :string[] {
+
+  function shuffleArray (arrayToshuffle : string[]) : string[] {
+    const arrayShuffled = arrayToshuffle.sort(() => 0.5 - Math.random());
+    return arrayShuffled;
+}
+
+let shuffledCards : string[] = shuffleArray(cards);
+cardsToPlay= selectCards(nbOfPairs, shuffledCards);
+
+function selectCards (nb : number, array : string []) :string[] {
   let array2 : string[] = array.splice(nb, array.length - nb);
   return array;
   }
@@ -104,11 +119,25 @@ let test = input.addEventListener("input", (event) => {
   
   
   }
+
+}
+
+
+
+
+
+  
+
+   
+  
+    
+  
+  
   
   
   
 
-});
+
 
 
 

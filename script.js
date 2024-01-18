@@ -1,12 +1,33 @@
 "use strict";
 const gameBoard = document.getElementById('game-board');
-const input = document.getElementById("choixNombre");
-let test = input.addEventListener("input", (event) => {
-    let target = event.target;
-    let inputValue = target.value;
+const cards = [
+    'https://picsum.photos/id/237/100/100',
+    'https://picsum.photos/id/238/100/100',
+    'https://picsum.photos/id/239/100/100',
+    'https://picsum.photos/id/240/100/100',
+    'https://picsum.photos/id/241/100/100',
+    'https://picsum.photos/id/242/100/100',
+    'https://picsum.photos/id/243/100/100',
+    'https://picsum.photos/id/244/100/100'
+];
+let input = document.getElementById("choixNombre");
+input.addEventListener("keyup", function (e) {
+    if (e.code === 'Enter') {
+        let boutonValider = document.getElementById("valider");
+        boutonValider.click();
+    }
+});
+function load() {
+    window.location.reload();
+}
+function getValue() {
+    let input = document.getElementById("choixNombre");
+    let inputValue = input.value;
     let nbOfPairs = inputValue;
+    input.value = '';
+    let boutonValider = document.getElementById("valider");
+    boutonValider.setAttribute("disabled", "disabled");
     let cardsToPlay = [];
-    console.log(cardsToPlay);
     let selectedCards = [];
     function createCard(CardUrl) {
         const card = document.createElement('div');
@@ -20,16 +41,6 @@ let test = input.addEventListener("input", (event) => {
         card.appendChild(cardContent);
         return card;
     }
-    const cards = [
-        'https://picsum.photos/id/237/100/100',
-        'https://picsum.photos/id/238/100/100',
-        'https://picsum.photos/id/239/100/100',
-        'https://picsum.photos/id/240/100/100',
-        'https://picsum.photos/id/241/100/100',
-        'https://picsum.photos/id/242/100/100',
-        'https://picsum.photos/id/243/100/100',
-        'https://picsum.photos/id/244/100/100'
-    ];
     function duplicateArray(arraySimple) {
         let arrayDouble = [];
         arrayDouble.push(...arraySimple);
@@ -87,4 +98,4 @@ let test = input.addEventListener("input", (event) => {
             }
         }
     }
-});
+}
