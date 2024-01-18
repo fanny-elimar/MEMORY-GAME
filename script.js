@@ -1,5 +1,6 @@
 "use strict";
-console.log("Hello toi");
+let cardsToPlay = [];
+console.log(cardsToPlay);
 let selectedCards = [];
 function createCard(CardUrl) {
     const card = document.createElement('div');
@@ -14,6 +15,7 @@ function createCard(CardUrl) {
     return card;
 }
 const gameBoard = document.getElementById('game-board');
+const nbOfPairs = 5;
 const cards = [
     'https://picsum.photos/id/237/100/100',
     'https://picsum.photos/id/238/100/100',
@@ -34,7 +36,13 @@ function shuffleArray(arrayToshuffle) {
     const arrayShuffled = arrayToshuffle.sort(() => 0.5 - Math.random());
     return arrayShuffled;
 }
-let allCards = duplicateArray(cards);
+let shuffledCards = shuffleArray(cards);
+cardsToPlay = selectCards(nbOfPairs, shuffledCards);
+function selectCards(nb, array) {
+    let array2 = array.splice(nb, array.length - nb);
+    return array;
+}
+let allCards = duplicateArray(cardsToPlay);
 allCards = shuffleArray(allCards);
 allCards.forEach(card => {
     const cardHtml = createCard(card);

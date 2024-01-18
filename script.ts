@@ -1,4 +1,6 @@
-console.log("Hello toi");
+
+let cardsToPlay : string[] = [];
+console.log(cardsToPlay);
 let selectedCards : HTMLElement[] = [];
 function createCard(CardUrl : string) : any {
     const card = document.createElement('div');
@@ -18,6 +20,7 @@ function createCard(CardUrl : string) : any {
 
 const gameBoard : HTMLElement | null = document.getElementById('game-board');
 
+const nbOfPairs :number = 5;
 
 const cards : string[] = [
     'https://picsum.photos/id/237/100/100', 
@@ -42,7 +45,15 @@ const cards : string[] = [
     return arrayShuffled;
 }
 
-  let allCards : string[] = duplicateArray(cards);
+let shuffledCards : string[] = shuffleArray(cards);
+cardsToPlay= selectCards(nbOfPairs, shuffledCards);
+
+function selectCards (nb : number, array : string []) :string[] {
+let array2 : string[] = array.splice(nb, array.length - nb);
+return array;
+}
+
+  let allCards : string[] = duplicateArray(cardsToPlay);
   allCards = shuffleArray(allCards);
 
   allCards.forEach(card=> {
