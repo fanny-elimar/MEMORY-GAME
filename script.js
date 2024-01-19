@@ -63,6 +63,17 @@ function getValue() {
     allCards.forEach(card => {
         const cardHtml = createCard(card);
         if (gameBoard !== null) {
+            switch (true) {
+                case (nbOfPairs <= 2):
+                    gameBoard.classList.add("nbOfPairs2");
+                    break;
+                case (nbOfPairs == 3):
+                    gameBoard.classList.add("nbOfPairs3");
+                    break;
+                case (nbOfPairs >= 3):
+                    gameBoard.classList.add("nbOfPairs4plus");
+                    break;
+            }
             gameBoard.appendChild(cardHtml);
         }
     });

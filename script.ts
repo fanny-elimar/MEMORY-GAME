@@ -2,6 +2,7 @@
 
 const gameBoard : HTMLElement | null = document.getElementById('game-board');
 
+
 const cards : string[] = [
   'https://picsum.photos/id/237/100/100', 
   'https://picsum.photos/id/238/100/100',
@@ -78,6 +79,19 @@ function selectCards (nb : number, array : string []) :string[] {
     allCards.forEach(card=> {
       const cardHtml = createCard(card);
       if (gameBoard !== null) {
+        switch (true) {
+          case (nbOfPairs<=2) :
+            gameBoard.classList.add("nbOfPairs2");
+            break;
+        case (nbOfPairs==3) :
+          gameBoard.classList.add("nbOfPairs3");
+            break;
+        case (nbOfPairs>=3) :
+          gameBoard.classList.add("nbOfPairs4plus");
+            break;
+        }
+
+
       gameBoard.appendChild(cardHtml);
       }
     })
@@ -121,26 +135,3 @@ function selectCards (nb : number, array : string []) :string[] {
   }
 
 }
-
-
-
-
-
-  
-
-   
-  
-    
-  
-  
-  
-  
-  
-
-
-
-
-
-
-
-  
