@@ -1,7 +1,38 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    color: rgb(115, 101, 169);
+
 }
+
+.flux {
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(
+      circle at 50% 0,
+      rgba(235, 5, 204, 0.329),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    radial-gradient(
+      circle at 6.7% 75%,
+      rgba(0, 0, 255, 0.5),
+      rgba(0, 0, 255, 0) 70.71%
+    ),
+    radial-gradient(
+        circle at 93.3% 75%,
+        rgba(207, 226, 100, 0.5),
+        rgba(0, 255, 0, 0) 70.71%
+      ) beige;
+        min-height: 90vh;
+
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  padding-top: 10px;
+  }
+
+
+
 
 #game-board {
     display: grid;
@@ -76,4 +107,69 @@ body {
     /*animation*/
     transform: rotateY(0deg);
     transition: all 0.5s;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.coolinput {
+  width: 210px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom,rgb(227, 213, 255),rgb(255, 231, 231));
+  border-radius: 30px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+  margin-right: 10px;
+}
+
+.input {
+  width: 200px;
+  height: 40px;
+  border: none;
+  outline: none;
+  caret-color: rgb(255, 81, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  padding-left: 15px;
+  letter-spacing: 0.8px;
+  color: rgb(19, 19, 19);
+  font-size: 13.4px;
+}
+
+.button {
+  width: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+  height: 40px;
+  border: none;
+  outline: none;
+  caret-color: rgb(255, 81, 0);
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+  letter-spacing: 0.8px;
+  color: rgb(115, 101, 169);
+  font-size: 13.4px;
+  background: linear-gradient(to bottom,rgb(227, 213, 255),rgb(255, 231, 231));
+  border-radius: 30px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+  margin-right: 10px;
+}
+
+.button:hover {
+  border: 1px solid rgb(109, 91, 177);
+}
+
+.button:disabled {
+  color: rgb(154, 148, 148);
+}
+
+.button:disabled:hover {
+  color: rgb(154, 148, 148);
+  border: none;
 }
