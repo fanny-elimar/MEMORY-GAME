@@ -4,14 +4,14 @@ const gameBoard = document.getElementById('game-board');
 let input = document.getElementById("choixNombre");
 /*import des images*/
 const cards = [
-    'https://picsum.photos/id/237/100/100',
-    'https://picsum.photos/id/238/100/100',
-    'https://picsum.photos/id/239/100/100',
-    'https://picsum.photos/id/240/100/100',
-    'https://picsum.photos/id/241/100/100',
-    'https://picsum.photos/id/242/100/100',
-    'https://picsum.photos/id/243/100/100',
-    'https://picsum.photos/id/244/100/100'
+    'Images\\elephant.jpg',
+    'Images\\rhinoceros.jpg',
+    'Images\\impala.jpg',
+    'Images\\hippopotame.jpg',
+    'Images\\gnou.jpg',
+    'Images\\girafe.jpg',
+    'Images\\zebres.jpg',
+    'Images\\lion.jpg'
 ];
 /*Touche entrée pour valider le choix du nombre de paires (simulation de clic)*/
 input.addEventListener("keyup", function (e) {
@@ -31,7 +31,9 @@ function getValue() {
     let nbOfPairs = inputValue;
     input.value = '';
     let boutonValider = document.getElementById("valider");
+    let boutonRejouer = document.getElementById("rejouer");
     boutonValider.setAttribute("disabled", "disabled");
+    boutonRejouer.removeAttribute("disabled");
     /*Gestion de l'affichage des cartes*/
     function createCard(CardUrl) {
         const card = document.createElement('div');
@@ -82,7 +84,12 @@ function getValue() {
                     gameBoard.classList.add("nbOfPairs3");
                     break;
                 case (nbOfPairs >= 3):
-                    gameBoard.classList.add("nbOfPairs4plus");
+                    if (nbOfPairs <= 6) {
+                        gameBoard.classList.add("nbOfPairs4a6");
+                    }
+                    else {
+                        gameBoard.classList.add("nbOfPairs6plus");
+                    }
                     break;
             }
             gameBoard.appendChild(cardHtml);
