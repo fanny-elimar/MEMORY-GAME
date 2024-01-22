@@ -31,14 +31,14 @@ body {
   padding-top: 10px;
   }
 
-
-
-
 #game-board {
-    display: grid;
-    grid-gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
     justify-content: center;
-    margin: 30px auto;
+font-size: 0rem;
   }
 
 @media (max-width : 800px) {
@@ -47,88 +47,62 @@ body {
     flex-direction: column;
     align-items: center;
   }
+  .card.nbOfPairs3{
+    max-width: calc(100vh/5);
+    width: calc(100%/3);
+    }
+    .card.nbOfPairs2{
+      max-width: calc(100vh/5);
+      width: calc(100%/2);
+      }
+      .card.nbOfPairs4a6{
+        max-width: calc(100vh/6);
+        width: calc(100%/4);
+        }
 
-  #game-board.nbOfPairs2 {
-  grid-template-columns: repeat(2, 100px);
-  grid-auto-rows: 100px;
+        .card.nbOfPairs6plus{
+          max-width: calc(100vh/6);
+          width: calc(100%/5);
+          }
 }
 
-#game-board.nbOfPairs3 {
-    grid-template-columns: repeat(2, 100px);
-    grid-auto-rows: 100px;
-  }
-
-#game-board.nbOfPairs4a6 {
-    grid-template-columns: repeat(3, 80px);
-    grid-auto-rows: 80px;
-  }
-
-  #game-board.nbOfPairs6plus {
-    grid-template-columns: repeat(3, 60px);
-    grid-auto-rows: 60px;
-  }
-}
-
-@media (width > 800px) and (width < 1000px){
+@media (width > 800px){
   .container {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
-#game-board.nbOfPairs2 {
-        grid-template-columns: repeat(2, 200px);
-        grid-auto-rows: 200px;
+  .card.nbOfPairs2{
+    max-width: calc(95vh/3);
+    width: calc(100%/3);
+    }
+  .card.nbOfPairs3{
+    max-width: calc(95vh/3);
+    width: calc(100%/3);
+    }
+    .card.nbOfPairs4a6{
+      max-width: calc(95vh/4);
+      width: calc(100%/5);
       }
-      
-#game-board.nbOfPairs3 {
-          grid-template-columns: repeat(3, 150px);
-          grid-auto-rows: 150px;
-        }
 
-#game-board.nbOfPairs4a6 {
-          grid-template-columns: repeat(4, 140px);
-          grid-auto-rows: 140px;
-        }
-      
-#game-board.nbOfPairs6plus {
-          grid-template-columns: repeat(4, 100px);
-          grid-auto-rows: 100px;
+      .card.nbOfPairs6plus{
+        max-width: calc(95vh/4);
+        width: calc(100%/8);
         }
 }
 
-@media (width > 999px) {
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
-#game-board.nbOfPairs2 {
-        grid-template-columns: repeat(2, 200px);
-        grid-auto-rows: 200px;
-      }
-      
-#game-board.nbOfPairs3 {
-          grid-template-columns: repeat(3, 200px);
-          grid-auto-rows: 200px;
-        }
-      
-#game-board.nbOfPairs4a6 {
-          grid-template-columns: repeat(4, 150px);
-          grid-auto-rows: 150px;
-        }
 
-#game-board.nbOfPairs6plus {
-          grid-template-columns: repeat(4, 120px);
-          grid-auto-rows: 120px;
-        }
-}
+
+
+
 
 .card {
     background-color: #ccc;
     border-radius: 5px;
     cursor: pointer;
+    margin: 0.5rem;
+
 }
 .card .card-content {
     opacity: 0;

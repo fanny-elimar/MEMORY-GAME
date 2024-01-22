@@ -93,16 +93,16 @@ function getValue() {
     if (gameBoard !== null) {
       switch (true) {
       case (nbOfPairs<=2) :
-        gameBoard.classList.add("nbOfPairs2");
+        cardHtml.classList.add("nbOfPairs2");
         break;
       case (nbOfPairs==3) :
-        gameBoard.classList.add("nbOfPairs3");
+        cardHtml.classList.add("nbOfPairs3");
         break;
       case (nbOfPairs>=3) :
       if   (nbOfPairs<=6) {
-        gameBoard.classList.add("nbOfPairs4a6");
+        cardHtml.classList.add("nbOfPairs4a6");
       } else {
-        gameBoard.classList.add("nbOfPairs6plus");
+        cardHtml.classList.add("nbOfPairs6plus");
       }
       
       break;
