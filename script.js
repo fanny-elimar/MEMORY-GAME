@@ -32,8 +32,7 @@ function getValue() {
     input.value = '';
     let boutonValider = document.getElementById("valider");
     let boutonRejouer = document.getElementById("rejouer");
-    boutonValider.setAttribute("disabled", "disabled");
-    boutonRejouer.removeAttribute("disabled");
+    boutonRejouer.setAttribute("style", "display:inline-block");
     /*Gestion de l'affichage des cartes*/
     function createCard(CardUrl) {
         const card = document.createElement('div');
@@ -100,6 +99,7 @@ function getValue() {
         if (selectedCards.length < 2) {
             const card = e.target.parentElement;
             card.classList.add("flip");
+            card.removeEventListener('click', onCardClick);
             selectedCards.push(card);
             if (selectedCards.length == 2) {
                 setTimeout(() => {
@@ -122,6 +122,8 @@ function getValue() {
                         //on s'est trompé
                         selectedCards[0].classList.remove("flip");
                         selectedCards[1].classList.remove("flip");
+                        selectedCards[0].addEventListener('click', onCardClick);
+                        selectedCards[1].addEventListener('click', onCardClick);
                     }
                     selectedCards = [];
                 }, 1000);

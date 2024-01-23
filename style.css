@@ -196,3 +196,7 @@ font-size: 0rem;
   color: rgb(154, 148, 148);
   border: none;
 }
+
+.button-rejouer {
+  display: none;
+}
