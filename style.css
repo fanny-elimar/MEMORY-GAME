@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     color: rgb(115, 101, 169);
 
@@ -160,9 +160,9 @@ font-size: 0rem;
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
   padding-left: 15px;
-  letter-spacing: 0.8px;
   color: rgb(19, 19, 19);
   font-size: 13.4px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .button {
@@ -175,13 +175,13 @@ font-size: 0rem;
   caret-color: rgb(255, 81, 0);
   background-color: rgb(255, 255, 255);
   border-radius: 30px;
-  letter-spacing: 0.8px;
   color: rgb(115, 101, 169);
   font-size: 13.4px;
   background: linear-gradient(to bottom,rgb(227, 213, 255),rgb(255, 231, 231));
   border-radius: 30px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
   margin-right: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .button:hover {
