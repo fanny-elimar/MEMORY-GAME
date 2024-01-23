@@ -52,7 +52,7 @@ font-size: 0rem;
     width: calc(100%/3);
     }
     .card.nbOfPairs2{
-      max-width: calc(100vh/5);
+      max-width: calc(100vh/6);
       width: calc(100%/2);
       }
       .card.nbOfPairs4a6{
@@ -199,4 +199,8 @@ font-size: 0rem;
 
 .button-rejouer {
   display: none;
+}
+
+.nbEssais {
+  font-size: 0.8rem;
 }

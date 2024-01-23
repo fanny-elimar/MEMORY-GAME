@@ -33,6 +33,7 @@ function getValue() {
     let boutonValider = document.getElementById("valider");
     let boutonRejouer = document.getElementById("rejouer");
     boutonRejouer.setAttribute("style", "display:inline-block");
+    input.setAttribute("style", "display:none");
     /*Gestion de l'affichage des cartes*/
     function createCard(CardUrl) {
         const card = document.createElement('div');
@@ -95,6 +96,7 @@ function getValue() {
         }
     });
     /*Valider les paires*/
+    let nbEssais = 0;
     function onCardClick(e) {
         if (selectedCards.length < 2) {
             const card = e.target.parentElement;
@@ -102,6 +104,13 @@ function getValue() {
             card.removeEventListener('click', onCardClick);
             selectedCards.push(card);
             if (selectedCards.length == 2) {
+                /*Afficher le nombre d'essais*/
+                nbEssais += 1;
+                let nbEssaisStr = nbEssais.toString();
+                const nbEssaisHtml = document.getElementById("nbEssais");
+                if (nbEssaisHtml !== null) {
+                    nbEssaisHtml.innerHTML = `Nombre d'essais - ${nbEssaisStr}`;
+                }
                 setTimeout(() => {
                     if (selectedCards[0].dataset.value == selectedCards[1].dataset.value) {
                         //on a trouvé une paire
