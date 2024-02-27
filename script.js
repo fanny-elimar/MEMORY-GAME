@@ -32,8 +32,8 @@ function getValue() {
     input.value = '';
     let boutonValider = document.getElementById("valider");
     let boutonRejouer = document.getElementById("rejouer");
-    boutonValider.setAttribute("disabled", "disabled");
-    boutonRejouer.removeAttribute("disabled");
+    boutonRejouer.setAttribute("style", "display:inline-block");
+    input.setAttribute("style", "display:none");
     /*Gestion de l'affichage des cartes*/
     function createCard(CardUrl) {
         const card = document.createElement('div');
@@ -78,17 +78,17 @@ function getValue() {
         if (gameBoard !== null) {
             switch (true) {
                 case (nbOfPairs <= 2):
-                    gameBoard.classList.add("nbOfPairs2");
+                    cardHtml.classList.add("nbOfPairs2");
                     break;
                 case (nbOfPairs == 3):
-                    gameBoard.classList.add("nbOfPairs3");
+                    cardHtml.classList.add("nbOfPairs3");
                     break;
                 case (nbOfPairs >= 3):
                     if (nbOfPairs <= 6) {
-                        gameBoard.classList.add("nbOfPairs4a6");
+                        cardHtml.classList.add("nbOfPairs4a6");
                     }
                     else {
-                        gameBoard.classList.add("nbOfPairs6plus");
+                        cardHtml.classList.add("nbOfPairs6plus");
                     }
                     break;
             }
@@ -96,12 +96,21 @@ function getValue() {
         }
     });
     /*Valider les paires*/
+    let nbEssais = 0;
     function onCardClick(e) {
         if (selectedCards.length < 2) {
             const card = e.target.parentElement;
             card.classList.add("flip");
+            card.removeEventListener('click', onCardClick);
             selectedCards.push(card);
             if (selectedCards.length == 2) {
+                /*Afficher le nombre d'essais*/
+                nbEssais += 1;
+                let nbEssaisStr = nbEssais.toString();
+                const nbEssaisHtml = document.getElementById("nbEssais");
+                if (nbEssaisHtml !== null) {
+                    nbEssaisHtml.innerHTML = `Nombre d'essais - ${nbEssaisStr}`;
+                }
                 setTimeout(() => {
                     if (selectedCards[0].dataset.value == selectedCards[1].dataset.value) {
                         //on a trouvé une paire
@@ -122,6 +131,8 @@ function getValue() {
                         //on s'est trompé
                         selectedCards[0].classList.remove("flip");
                         selectedCards[1].classList.remove("flip");
+                        selectedCards[0].addEventListener('click', onCardClick);
+                        selectedCards[1].addEventListener('click', onCardClick);
                     }
                     selectedCards = [];
                 }, 1000);
