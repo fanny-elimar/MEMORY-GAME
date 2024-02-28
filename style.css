@@ -1,7 +1,7 @@
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    color: rgb(115, 101, 169);
+    color:#152118;
 
 }
 
@@ -11,17 +11,17 @@ body {
   background:
     radial-gradient(
       circle at 50% 0,
-      rgba(235, 5, 204, 0.329),
+      #9bf793,
       rgba(255, 0, 0, 0) 70.71%
     ),
     radial-gradient(
       circle at 6.7% 75%,
-      rgba(0, 0, 255, 0.5),
+      #30eee4,
       rgba(0, 0, 255, 0) 70.71%
     ),
     radial-gradient(
         circle at 93.3% 75%,
-        rgba(207, 226, 100, 0.5),
+        #fbf65b,
         rgba(0, 255, 0, 0) 70.71%
       ) beige;
         min-height: 90vh;
@@ -31,47 +31,140 @@ body {
   padding-top: 10px;
   }
 
-#game-board {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    justify-content: center;
-font-size: 0rem;
-  }
-
-@media (max-width : 800px) {
   .container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .card.nbOfPairs3{
-    max-width: calc(100vh/5);
-    width: calc(100%/3);
-    }
-    .card.nbOfPairs2{
-      max-width: calc(100vh/6);
-      width: calc(100%/2);
-      }
-      .card.nbOfPairs4a6{
-        max-width: calc(100vh/6);
-        width: calc(100%/4);
-        }
 
-        .card.nbOfPairs6plus{
-          max-width: calc(100vh/6);
-          width: calc(100%/5);
-          }
-}
+  /* grille mobile*/
 
-@media (width > 800px){
-  .container {
-    display: flex;
-    align-items: center;
+.grid2 {
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+    grid-template-rows: 40vw 40vw;
+    gap: 5px;
     justify-content: center;
+    font-size: 0rem;
   }
+
+  .grid3 {
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+    grid-template-rows: 40vw 40vw 40vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid4 {
+    display: grid;
+    grid-template-columns: 30vw 30vw;
+    grid-template-rows: 30vw 30vw 30vw 30vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid5 {
+    display: grid;
+    grid-template-columns: 30vw 30vw;
+    grid-template-rows: 30vw 30vw 30vw 30vw 30vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid6 {
+    display: grid;
+    grid-template-columns: 30vw 30vw 30vw;
+    grid-template-rows: 30vw 30vw 30vw 30vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid8, .grid10, .grid12, .grid14, .grid16 {
+    display: grid;
+    grid-template-columns: 20vw 20vw 20vw 20vw;
+    grid-template-rows: 20vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+
+
+@media (width > 600px){
+.grid2 {
+    display: grid;
+    grid-template-columns: 20vw 20vw ;
+    grid-template-rows: 20vw 20vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+  .grid3 {
+    display: grid;
+    grid-template-columns: 20vw 20vw 20vw;
+    grid-template-rows: 20vw 20vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+  .grid4 {
+    display: grid;
+    grid-template-columns: 15vw 15vw 15vw 15vw;
+    grid-template-rows: 15vw 15vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+  .grid5 {
+    display: grid;
+    grid-template-columns: 15vw 15vw 15vw 15vw 15vw;
+    grid-template-rows: 15vw 15vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+  .grid6 {
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw 10vw;
+    grid-template-rows: 10vw 10vw 10vw ;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid8, .grid12, .grid16{
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
+    grid-template-rows: 10vw 10vw 10vw 10vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid10{
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw 10vw 10vw;
+    grid-template-rows: 10vw 10vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid14{
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
+    grid-template-rows: 10vw 10vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+}
+  /*
   .card.nbOfPairs2{
     max-width: calc(95vh/3);
     width: calc(100%/3);
@@ -92,7 +185,7 @@ font-size: 0rem;
 }
 
 
-
+*/
 
 
 
@@ -136,55 +229,41 @@ font-size: 0rem;
 }
 
 
-.coolinput {
-  width: 210px;
-  height: 50px;
+.boutons_niveau {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  background: linear-gradient(to bottom,rgb(227, 213, 255),rgb(255, 231, 231));
-  border-radius: 0px;
-  overflow: hidden;
-  cursor: pointer;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.input {
-  width: 200px;
-  height: 40px;
-  border: none;
-  outline: none;
-  caret-color: rgb(255, 81, 0);
-  background-color: rgb(255, 255, 255);
-  border-radius: 0px;
-  padding-left: 15px;
-  color: rgb(19, 19, 19);
-  font-size: 13.4px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  max-width: 16rem;
 }
 
 .button {
-  width: auto;
-  padding-right: 20px;
-  padding-left: 20px;
-  height: 40px;
+  width: fit-content;
+  padding: 5px;
   border: none;
   outline: none;
-  caret-color: rgb(255, 81, 0);
-  background-color: rgb(255, 255, 255);
-  color: rgb(115, 101, 169);
-  font-size: 13.4px;
-  background: linear-gradient(to bottom,rgb(227, 213, 255),rgb(255, 231, 231));
-  border-radius: 0px;
+  font-size:0.8rem;
+  background: #71f48d;
+  border-radius: 5px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
   margin-right: 10px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
+.buttons {
+display: flex;
+justify-content: end;
+}
+
+.button-niveau {
+width: 2.5rem;
+border-radius: 5px;
+margin-bottom: 5px;
+}
+
+
 .button:hover {
-  border: 1px solid rgb(109, 91, 177);
+  border: 1px solid #3d824c;
 }
 
 .button:disabled {
@@ -201,5 +280,14 @@ font-size: 0rem;
 }
 
 .nbEssais {
+  display: none;
   font-size: 0.8rem;
+  width: fit-content;
+  padding: 5px;
+  border: 1px black solid;
+  outline: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
+  margin-right: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
