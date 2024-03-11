@@ -1,8 +1,7 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Fredoka, Arial, Helvetica, sans-serif;
     text-align: center;
     color:#152118;
-
 }
 
 .flux {
@@ -24,7 +23,7 @@ body {
         #fbf65b,
         rgba(0, 255, 0, 0) 70.71%
       ) beige;
-        min-height: 90vh;
+       height: 98vh;
 
   background-repeat: no-repeat;
   border-radius: 20px;
@@ -137,7 +136,25 @@ body {
     font-size: 0rem;
   }
 
-  .grid8, .grid12, .grid16{
+  .grid8 {
+    display: grid;
+    grid-template-columns: 12vw 12vw 12vw 12vw ;
+    grid-template-rows: 12vw 12vw 12vw 12vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid12{
+    display: grid;
+    grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
+    grid-template-rows: 10vw 10vw 10vw;
+    gap: 5px;
+    justify-content: center;
+    font-size: 0rem;
+  }
+
+  .grid16{
     display: grid;
     grid-template-columns: 10vw 10vw 10vw 10vw 10vw 10vw 10vw 10vw;
     grid-template-rows: 10vw 10vw 10vw 10vw;
@@ -247,12 +264,17 @@ body {
   border-radius: 5px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
   margin-right: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Fredoka, Arial, Helvetica, sans-serif;
+}
+.link_retour {
+  text-decoration: none;
+  color: black;
 }
 
 .buttons {
 display: flex;
 justify-content: end;
+flex-wrap: wrap;
 }
 
 .button-niveau {
@@ -289,5 +311,243 @@ margin-bottom: 5px;
   border-radius: 5px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075);
   margin-right: 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Fredoka, Arial, Helvetica, sans-serif;
+}
+
+.vignettes_themes {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  justify-content: center;
+}
+
+.link_themes {
+flex-direction: column;
+text-decoration: none;
+color: black;
+border: none ;
+background-color: transparent;
+}
+
+.img_themes {
+  max-width: 30vw;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+
+@media (width > 600px){
+  .vignettes_themes {
+    margin-left: 15vw;
+    margin-right: 15vw;
+  }
+
+  .img_themes {
+    max-width: 15vw;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.bravo {
+  position: absolute;
+  font-size: 20vw;
+  top: 1vh;
+  height: 100vh;
+}
+
+.bravo_b {
+  position: relative;
+  height: auto;
+  padding: 1vw;
+  top: -50vh;
+  left : 13vw;
+  animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards
+}
+
+.bravo_r {
+  position: absolute;
+  top: -50vh;
+  left : 24vw;
+  padding: 1vw;
+animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards;
+  animation-delay: 500ms;
+}
+
+.bravo_a {
+  position: absolute;
+  top: -50vh;
+  padding: 1vw;
+
+  left : 36vw;
+animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards;
+  animation-delay: 1000ms;
+}
+
+.bravo_v {
+  position: absolute;
+  top: -50vh;
+  padding: 1vw;
+  left : 47vw;
+animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards;
+  animation-delay: 1500ms;
+}
+.bravo_o {
+  position: absolute;
+  top: -50vh;
+  padding: 1vw;
+  left : 58vw;
+animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards;
+  animation-delay: 2000ms;
+}
+
+@keyframes bravo {
+
+  25% {
+
+color: #fbf65b;
+  }
+  50% {
+color: #3d824c;
+  }
+75% {
+  color: #fbf65b;
+}
+  100% {
+color: #30eee4 ;
+top: 20vh;
+  }
+  
+}
+
+
+
+@media (width > 600px){
+.hidden {
+  display: none;
+}
+
+.bravo {
+  position: absolute;
+  font-size: 20vw;
+  top: 1vh;
+  height: 100vh;
+}
+
+.bravo_b {
+  position: relative;
+  height: auto;
+  padding: 1vw;
+  top: -50vh;
+  left : 20vw;
+  animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards
+}
+
+.bravo_r {
+  position: absolute;
+  top: -50vh;
+  left : 31vw;
+  padding: 1vw;
+animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards;
+  animation-delay: 500ms;
+}
+
+.bravo_a {
+  position: absolute;
+  top: -50vh;
+  padding: 1vw;
+
+  left : 42vw;
+animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards;
+  animation-delay: 1000ms;
+}
+
+.bravo_v {
+  position: absolute;
+  top: -50vh;
+  padding: 1vw;
+  left : 53vw;
+animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards;
+  animation-delay: 1500ms;
+}
+.bravo_o {
+  position: absolute;
+  top: -50vh;
+  padding: 1vw;
+  left : 64vw;
+animation-duration: 3s;
+  animation-name: bravo;
+  animation-fill-mode : forwards;
+  animation-delay: 2000ms;
+}
+
+@keyframes bravo {
+
+  25% {
+
+color: #fbf65b;
+  }
+  50% {
+color: #3d824c;
+  }
+75% {
+  color: #fbf65b;
+}
+  100% {
+color: #30eee4 ;
+top: 0vh;
+  }
+  
+}
+}
+
+footer {
+position: absolute;
+bottom: 0;
+width:98%;
+}
+
+footer p {
+  margin : 0;
+
+  font-size: 0.8rem;
+  color: rgb(16, 107, 107);
+}
+
+@media (width > 600px) {
+  footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width:98%;
+    }
+    
+    footer div {
+      margin : 0;
+      font-size: 0.8rem;
+      color: rgb(16, 107, 107);
+    }
 }

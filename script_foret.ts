@@ -1,124 +1,69 @@
 /* récupération des éléments HTML */
 const gameBoard: HTMLElement | null = document.getElementById('game-board')
-const accueil: HTMLElement | null = document.getElementById('accueil')
-const jeu: HTMLElement | null = document.getElementById('jeu')
-const boutonRejouer = document.getElementById('rejouer')
-let cards: string[]
+
 
 /* import des images */
-
-const cardsSavane: string [] = [
-  'Images\\savane\\elephant.webp',
-  'Images\\savane\\rhinoceros.webp',
-  'Images\\savane\\impala.webp',
-  'Images\\savane\\hippopotame.webp',
-  'Images\\savane\\gnou.webp',
-  'Images\\savane\\girafe.webp',
-  'Images\\savane\\zebres.webp',
-  'Images\\savane\\lion.webp',
-  'Images\\savane\\guepard.webp',
-  'Images\\savane\\elephants.webp',
-  'Images\\savane\\hyenes.webp',
-  'Images\\savane\\lionceau.webp',
-  'Images\\savane\\zebres_girafes.webp',
-  'Images\\savane\\gazelles.webp',
-  'Images\\savane\\leopard.webp',
-  'Images\\savane\\singe.webp',
-  'Images\\savane\\buffle.webp'
+const cards: string[] = [
+  'Images\\foret\\cerf.webp',
+  'Images\\foret\\loup.webp',
+  'Images\\foret\\daim.webp',
+  'Images\\foret\\chevreuil.webp',
+  'Images\\foret\\ecureuil.webp',
+  'Images\\foret\\lapin.webp',
+  'Images\\foret\\renardeau.webp',
+  'Images\\foret\\ours.webp',
+  'Images\\foret\\blaireau.webp',
+  'Images\\foret\\scarabee.webp',
+  'Images\\foret\\pic.webp',
+  'Images\\foret\\sanglier.webp',
+  'Images\\foret\\herisson.webp',
+  'Images\\foret\\hibou.webp',
+  'Images\\foret\\lynx.webp',
+  'Images\\foret\\raton-laveur.webp',
 ]
 
-const cardsBanquise: string [] = [
-  'Images\\banquise\\baleine.webp',
-  'Images\\banquise\\loup.webp',
-  'Images\\banquise\\macareux.webp',
-  'Images\\banquise\\manchot.webp',
-  'Images\\banquise\\morse.webp',
-  'Images\\banquise\\morses.webp',
-  'Images\\banquise\\otarie.webp',
-  'Images\\banquise\\ours.webp',
-  'Images\\banquise\\ours2.webp',
-  'Images\\banquise\\petrel.webp',
-  'Images\\banquise\\phoque.webp',
-  'Images\\banquise\\pingouin.webp',
-  'Images\\banquise\\renard.webp',
-  'Images\\banquise\\renard2.webp',
-  'Images\\banquise\\renne.webp',
-  'Images\\banquise\\sterne.webp'
-]
 
 /* Chargement de la zone de jeu */
 function load () {
-  const choixNiveau = document.querySelector('.choix_niveau')!
-  boutonRejouer.setAttribute('style', 'display:none')
-  choixNiveau.setAttribute('style', 'display:flex')
-  while (gameBoard.firstChild) {
-    gameBoard.removeChild(gameBoard.firstChild);
-  }
-  gameBoard?.removeAttribute('class')
- 
-  allCards.length=0
-
-
+  window.location.reload()
 }
 
-let theme: string
-const boutonThemes = []
-const boutonSavane = document.getElementById('savane')
-const boutonBanquise = document.getElementById('banquise')
-const boutonForet = document.getElementById('foret')
-const boutonMix = document.getElementById('mix')
+let nbOfPairs: number
+const boutons = []
+const bouton2 = document.getElementById('2paires')
+const bouton3 = document.getElementById('3paires')
+const bouton4 = document.getElementById('4paires')
+const bouton5 = document.getElementById('5paires')
+const bouton6 = document.getElementById('6paires')
+const bouton8 = document.getElementById('8paires')
+const bouton10 = document.getElementById('10paires')
+const bouton12 = document.getElementById('12paires')
+const bouton14 = document.getElementById('14paires')
+const bouton16 = document.getElementById('16paires')
 
-boutonThemes.push(boutonSavane, boutonBanquise, boutonForet, boutonMix)
+boutons.push(bouton2, bouton3, bouton4, bouton5, bouton6, bouton8, bouton10, bouton12, bouton14, bouton16)
 
-for (let i = 0; i <= boutonThemes.length; i++) {
-  boutonThemes[i].addEventListener('click', function () {
-    theme = this.dataset.themes
 
-    accueil?.setAttribute('style', 'display:none')
-    jeu?.classList.add('container')
-    jeu?.classList.remove('hidden')
-    choisirNiveau()
-    console.log(theme)
-    if (theme === 'savane') {
-      cards = cardsSavane
-    } else if (theme === 'banquise') {
-      cards = cardsBanquise
-    }
-    console.log(cards)
-  })
+for (let i=0; i<=boutons.length; i++) {
+  boutons[i].addEventListener('click', function () { 
+    let buttonValue: string | undefined;
+    buttonValue = this.dataset.paires; 
+    nbOfPairs = Number(buttonValue)
+    this.style.backgroundColor ='orange';
+    console.log(nbOfPairs)
+    Start();
+    
+  });
 }
 
-function choisirNiveau () {
-  let nbOfPairs: number = 0
-  const boutons = []
-  const bouton2 = document.getElementById('2paires')
-  const bouton3 = document.getElementById('3paires')
-  const bouton4 = document.getElementById('4paires')
-  const bouton5 = document.getElementById('5paires')
-  const bouton6 = document.getElementById('6paires')
-  const bouton8 = document.getElementById('8paires')
-  const bouton10 = document.getElementById('10paires')
-  const bouton12 = document.getElementById('12paires')
-  const bouton14 = document.getElementById('14paires')
-  const bouton16 = document.getElementById('16paires')
-
-  boutons.push(bouton2, bouton3, bouton4, bouton5, bouton6, bouton8, bouton10, bouton12, bouton14, bouton16)
-
-  for (let i = 0; i <= boutons.length; i++) {
-    boutons[i]?.addEventListener('click', function () {
-      let buttonValue: string | undefined
-      buttonValue = this.dataset.paires
-      nbOfPairs = Number(buttonValue)
-      Start(nbOfPairs)
-    })
-  }
-}
 
 /* Récupération du nombre de paires */
-function Start (nbOfPairs) {
-  const choixNiveau = document.querySelector('.choix_niveau')!
+function Start () {
+  const boutonRejouer = document.getElementById('rejouer') as HTMLButtonElement
+  const choixNiveau = document.querySelector('.choix_niveau') as HTMLElement
   boutonRejouer.setAttribute('style', 'display:inline-block')
   choixNiveau.setAttribute('style', 'display:none')
+  
 
   /* Gestion de l'affichage des cartes */
   function createCard (CardUrl: string): any {
@@ -164,11 +109,8 @@ function Start (nbOfPairs) {
   }
 
   /* Dupliquer les cartes sélectionnées pour former des paires */
-  let allCards: string[] = []
- 
-  allCards = duplicateArray(cardsToPlay)
+  let allCards: string[] = duplicateArray(cardsToPlay)
   allCards = shuffleArray(allCards)
-  console.log(allCards)
 
   /* Afficher les cartes - responsive */
   allCards.forEach(card => {
@@ -236,11 +178,11 @@ function Start (nbOfPairs) {
         if (nbEssaisHtml !== null) {
           nbEssaisHtml.setAttribute('style', 'display:block')
           if (nbEssais === 1) {
-            nbEssaisHtml.innerHTML = `${nbEssaisStr} essai`
-          } else {
-            nbEssaisHtml.innerHTML = `${nbEssaisStr} essais`
-          }
+          nbEssaisHtml.innerHTML = `${nbEssaisStr} essai`
+        } else {
+          nbEssaisHtml.innerHTML = `${nbEssaisStr} essais`
         }
+      }
 
         setTimeout(() => {
           if (selectedCards[0].dataset.value == selectedCards[1].dataset.value) {
@@ -270,4 +212,3 @@ function Start (nbOfPairs) {
     }
   }
 }
-

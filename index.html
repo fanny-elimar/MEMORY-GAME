@@ -4,41 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredoka:wght@300..700&family=Ojuju:wght@200..800&display=swap" rel="stylesheet">
     <title>Memory</title>
 </head>
 <body>
     <div class="flux">
     <h1>Memory</h1>
-    <div id="game-board">
-    </div>
-    <div class="container">
-        <div class="choix_niveau">
-        <p>Choisis le nombre de paires</p>
-        <div class="boutons_niveau">
-        <button type="button" id="2paires" class="button button-niveau" data-paires="2">2 </button>
-        <button type="button" id="3paires" class="button button-niveau" data-paires="3">3 </button>
-        <button type="button" id="4paires" class="button button-niveau" data-paires="4">4 </button>
-        <button type="button" id="5paires" class="button button-niveau" data-paires="5">5 </button>
-        <button type="button" id="6paires" class="button button-niveau" data-paires="6">6 </button>
-        <button type="button" id="8paires" class="button button-niveau" data-paires="8">8 </button>
-        <button type="button" id="10paires" class="button button-niveau" data-paires="10">10 </button>
-        <button type="button" id="12paires" class="button button-niveau" data-paires="12">12 </button>
-        <button type="button" id="14paires" class="button button-niveau" data-paires="14">14 </button>
-        <button type="button" id="16paires" class="button button-niveau" data-paires="16">16 </button>
+    <div class="accueil" id="accueil">
+        <div class="choix_theme">
+        <p>Choisis ton thème</p>
+        <div class="vignettes_themes">
+            <a href="game_savane.html" class="link_themes">
+            <div><img src="Images\\savane\\elephant.webp" class="img_themes"></div> 
+            <div>Savane</div></a> 
+    
+            <a href="game_banquise.html" class="link_themes">
+            <div><img src="Images\\banquise\\otarie.webp" class="img_themes"></div> 
+            <div>Animaux du froid</div> 
+        </a>
+        <a href="game_foret.html" class="link_themes">
+            <div><img src="Images\\foret\\cerf.webp" class="img_themes"></div> 
+            <div>Forêt</div> 
+        </a>
+
     </div>
 
 </div> 
+    </div>
+    <div id="jeu" class="hidden">
+<div id="game-board">
+</div>
+<div class="container">
+    <div class="choix_niveau">
+    <p>Choisis le nombre de paires</p>
+    <div class="boutons_niveau">
+    <button type="button" id="2paires" class="button button-niveau" data-paires="2">2 </button>
+    <button type="button" id="3paires" class="button button-niveau" data-paires="3">3 </button>
+    <button type="button" id="4paires" class="button button-niveau" data-paires="4">4 </button>
+    <button type="button" id="5paires" class="button button-niveau" data-paires="5">5 </button>
+    <button type="button" id="6paires" class="button button-niveau" data-paires="6">6 </button>
+    <button type="button" id="8paires" class="button button-niveau" data-paires="8">8 </button>
+    <button type="button" id="10paires" class="button button-niveau" data-paires="10">10 </button>
+    <button type="button" id="12paires" class="button button-niveau" data-paires="12">12 </button>
+    <button type="button" id="14paires" class="button button-niveau" data-paires="14">14 </button>
+    <button type="button" id="16paires" class="button button-niveau" data-paires="16">16 </button>
+</div>
+
+</div> 
 <div class="buttons">
-        <button type="button" id="valider" onclick="getValue()" class="button">Retour </button>
-        <button type="button" id="rejouer" onclick="load()" class="button button-rejouer">Rejouer </button>
-        <div id="nbEssais" class="nbEssais"></div>
+    <button type="button" id="retour"class="button"><a href="index.html" class="link_retour">Retour</a> </button>
+    <button type="button" id="rejouer" onclick="load()" class="button button-rejouer">Rejouer </button>
+    <div id="nbEssais" class="nbEssais"></div>
 </div>
 
-       </div>
+
+
     
     
 </div>
-
-<script src="script.js"></script>
+</div>
+<footer>
+    <div><p>© 2024 fanny elimar. All rigths reserved. </p></div>
+    <div><p>Images provenant de Pixabay.com</p></div>
+</footer>
+<script src=""></script>
 </body>
 </html>
