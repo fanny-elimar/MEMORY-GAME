@@ -1,6 +1,6 @@
 /* récupération des éléments HTML */
 const gameBoard: HTMLElement | null = document.getElementById('game-board')
-
+const bravo: HTMLElement | null = document.getElementById('bravo')
 
 /* import des images */
 const cards: string[] = [
@@ -22,12 +22,12 @@ const cards: string[] = [
   'Images\\banquise\\sterne.webp',
 ]
 
-
-/* Chargement de la zone de jeu */
+/* Chargement de la page */
 function load () {
   window.location.reload()
 }
 
+/* Choix du nombre de paires */
 let nbOfPairs: number
 const boutons = []
 const bouton2 = document.getElementById('2paires')
@@ -43,27 +43,23 @@ const bouton16 = document.getElementById('16paires')
 
 boutons.push(bouton2, bouton3, bouton4, bouton5, bouton6, bouton8, bouton10, bouton12, bouton14, bouton16)
 
-
-for (let i=0; i<=boutons.length; i++) {
-  boutons[i].addEventListener('click', function () { 
-    let buttonValue: string | undefined;
-    buttonValue = this.dataset.paires; 
+for (let i = 0; i <= boutons.length; i++) {
+  boutons[i].addEventListener('click', function () {
+    let buttonValue: string | undefined
+    buttonValue = this.dataset.paires
     nbOfPairs = Number(buttonValue)
-    this.style.backgroundColor ='orange';
+    this.style.backgroundColor = 'orange'
     console.log(nbOfPairs)
-    Start();
-    
-  });
+    Start()
+  })
 }
 
-
-/* Récupération du nombre de paires */
+/* Lancement du jeu - modification de l'affichage des boutons */
 function Start () {
   const boutonRejouer = document.getElementById('rejouer') as HTMLButtonElement
-  const choixNiveau = document.querySelector('.choix_niveau') as HTMLElement
+  const choixNiveau = document.querySelector('.gestionJeu--choixNiveau')!
   boutonRejouer.setAttribute('style', 'display:inline-block')
   choixNiveau.setAttribute('style', 'display:none')
-  
 
   /* Gestion de l'affichage des cartes */
   function createCard (CardUrl: string): any {
@@ -72,6 +68,9 @@ function Start () {
     card.classList.add('unfound')
     card.dataset.value = CardUrl
     card.addEventListener('click', onCardClick)
+    card.ondragstart = function () {
+      return false
+    }
 
     const cardContent = document.createElement('img')
     cardContent.classList.add('card-content')
@@ -104,7 +103,7 @@ function Start () {
   cardsToPlay = selectCards(nbOfPairs, shuffledCards)
 
   function selectCards (nb: number, array: string []): string[] {
-    const array2: string[] = array.splice(nb, array.length - nb)
+    array.splice(nb, array.length - nb)
     return array
   }
 
@@ -112,7 +111,7 @@ function Start () {
   let allCards: string[] = duplicateArray(cardsToPlay)
   allCards = shuffleArray(allCards)
 
-  /* Afficher les cartes - responsive */
+  /* Afficher les cartes */
   allCards.forEach(card => {
     const cardHtml = createCard(card)
     if (gameBoard !== null) {
@@ -161,6 +160,7 @@ function Start () {
       gameBoard.appendChild(cardHtml)
     }
   })
+
   /* Valider les paires */
   let nbEssais: number = 0
   function onCardClick (e: any) {
@@ -170,7 +170,7 @@ function Start () {
       card.removeEventListener('click', onCardClick)
       selectedCards.push(card)
 
-      if (selectedCards.length == 2) {
+      if (selectedCards.length === 2) {
         /* Afficher le nombre d'essais */
         nbEssais += 1
         const nbEssaisStr: string = nbEssais.toString()
@@ -178,14 +178,13 @@ function Start () {
         if (nbEssaisHtml !== null) {
           nbEssaisHtml.setAttribute('style', 'display:block')
           if (nbEssais === 1) {
-          nbEssaisHtml.innerHTML = `${nbEssaisStr} essai`
-        } else {
-          nbEssaisHtml.innerHTML = `${nbEssaisStr} essais`
+            nbEssaisHtml.innerHTML = `${nbEssaisStr} essai`
+          } else {
+            nbEssaisHtml.innerHTML = `${nbEssaisStr} essais`
+          }
         }
-      }
-
         setTimeout(() => {
-          if (selectedCards[0].dataset.value == selectedCards[1].dataset.value) {
+          if (selectedCards[0].dataset.value === selectedCards[1].dataset.value) {
             // on a trouvé une paire
             selectedCards[0].classList.add('matched')
             selectedCards[1].classList.add('matched')
@@ -195,9 +194,15 @@ function Start () {
             selectedCards[1].removeEventListener('click', onCardClick)
             const allCardNotFound = document.querySelectorAll('.unfound')
             console.log(allCardNotFound.length)
-            if (allCardNotFound.length == 0) {
+            if (allCardNotFound.length === 0) {
               // Le joueur a gagné
-              alert('Bravo, vous avez gagné')
+              bravo?.classList.remove('hidden')
+              confetti({
+                particleCount: 200,
+                spread: 200,
+                origin: { y: 0.6 }
+              })
+              setTimeout(() => {bravo?.classList.add('hidden')},10000)
             }
           } else {
             // on s'est trompé

@@ -1,6 +1,7 @@
 "use strict";
 /* récupération des éléments HTML */
 const gameBoard = document.getElementById('game-board');
+const bravo = document.getElementById('bravo');
 /* import des images */
 const cards = [
     'Images\\banquise\\baleine.webp',
@@ -20,10 +21,11 @@ const cards = [
     'Images\\banquise\\renne.webp',
     'Images\\banquise\\sterne.webp',
 ];
-/* Chargement de la zone de jeu */
+/* Chargement de la page */
 function load() {
     window.location.reload();
 }
+/* Choix du nombre de paires */
 let nbOfPairs;
 const boutons = [];
 const bouton2 = document.getElementById('2paires');
@@ -47,10 +49,10 @@ for (let i = 0; i <= boutons.length; i++) {
         Start();
     });
 }
-/* Récupération du nombre de paires */
+/* Lancement du jeu - modification de l'affichage des boutons */
 function Start() {
     const boutonRejouer = document.getElementById('rejouer');
-    const choixNiveau = document.querySelector('.choix_niveau');
+    const choixNiveau = document.querySelector('.gestionJeu--choixNiveau');
     boutonRejouer.setAttribute('style', 'display:inline-block');
     choixNiveau.setAttribute('style', 'display:none');
     /* Gestion de l'affichage des cartes */
@@ -60,6 +62,9 @@ function Start() {
         card.classList.add('unfound');
         card.dataset.value = CardUrl;
         card.addEventListener('click', onCardClick);
+        card.ondragstart = function () {
+            return false;
+        };
         const cardContent = document.createElement('img');
         cardContent.classList.add('card-content');
         cardContent.src = `${CardUrl}`;
@@ -85,13 +90,13 @@ function Start() {
     const shuffledCards = shuffleArray(cards);
     cardsToPlay = selectCards(nbOfPairs, shuffledCards);
     function selectCards(nb, array) {
-        const array2 = array.splice(nb, array.length - nb);
+        array.splice(nb, array.length - nb);
         return array;
     }
     /* Dupliquer les cartes sélectionnées pour former des paires */
     let allCards = duplicateArray(cardsToPlay);
     allCards = shuffleArray(allCards);
-    /* Afficher les cartes - responsive */
+    /* Afficher les cartes */
     allCards.forEach(card => {
         const cardHtml = createCard(card);
         if (gameBoard !== null) {
@@ -148,7 +153,7 @@ function Start() {
             card.classList.add('flip');
             card.removeEventListener('click', onCardClick);
             selectedCards.push(card);
-            if (selectedCards.length == 2) {
+            if (selectedCards.length === 2) {
                 /* Afficher le nombre d'essais */
                 nbEssais += 1;
                 const nbEssaisStr = nbEssais.toString();
@@ -163,7 +168,7 @@ function Start() {
                     }
                 }
                 setTimeout(() => {
-                    if (selectedCards[0].dataset.value == selectedCards[1].dataset.value) {
+                    if (selectedCards[0].dataset.value === selectedCards[1].dataset.value) {
                         // on a trouvé une paire
                         selectedCards[0].classList.add('matched');
                         selectedCards[1].classList.add('matched');
@@ -173,9 +178,15 @@ function Start() {
                         selectedCards[1].removeEventListener('click', onCardClick);
                         const allCardNotFound = document.querySelectorAll('.unfound');
                         console.log(allCardNotFound.length);
-                        if (allCardNotFound.length == 0) {
+                        if (allCardNotFound.length === 0) {
                             // Le joueur a gagné
-                            alert('Bravo, vous avez gagné');
+                            bravo === null || bravo === void 0 ? void 0 : bravo.classList.remove('hidden');
+                            confetti({
+                                particleCount: 200,
+                                spread: 200,
+                                origin: { y: 0.6 }
+                            });
+                            setTimeout(() => { bravo === null || bravo === void 0 ? void 0 : bravo.classList.add('hidden'); }, 10000);
                         }
                     }
                     else {
