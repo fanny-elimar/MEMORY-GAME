@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredoka:wght@300..700&family=Ojuju:wght@200..800&display=swap" rel="stylesheet">
+        <title>Memory</title>
+    </head>
+    <body>
+        <div class="flux">
+            <h1>Memo'Paires</h1>
+            <div id="game-board">
+            </div>
+            <div id="bravo" class="hidden bravo">
+                <p class="bravo_b">B</p>
+                <p class="bravo_r">R</p>
+                <p class="bravo_a">A</p>
+                <p class="bravo_v">V</p>
+                <p class="bravo_o">O</p>
+            </div>
+            <div class="gestionJeu">
+                <div class="gestionJeu--choixNiveau">
+                    <p>Choisis le nombre de paires</p>
+                    <div class="gestionJeu--choixNiveau-boutons">
+                        <button type="button" id="2paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="2">2 </button>
+                        <button type="button" id="3paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="3">3 </button>
+                        <button type="button" id="4paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="4">4 </button>
+                        <button type="button" id="5paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="5">5 </button>
+                        <button type="button" id="6paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="6">6 </button>
+                        <button type="button" id="8paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="8">8 </button>
+                        <button type="button" id="10paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="10">10 </button>
+                        <button type="button" id="12paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="12">12 </button>
+                        <button type="button" id="14paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="14">14 </button>
+                        <button type="button" id="16paires" class="gestionJeu--button gestionJeu--button-niveau" data-paires="16">16 </button>
+                    </div>
+                </div> 
+                <div class="gestionJeu--nav">
+                    <button type="button" id="retour"class="gestionJeu--button"><a href="index.html" class="gestionJeu--link_retour">Retour</a> </button>
+                    <button type="button" id="rejouer" onclick="load()" class="gestionJeu--button gestionJeu--button-rejouer">Rejouer </button>
+                    <div id="nbEssais" class="nbEssais">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div>
+                <p>© 2024 fanny elimar. All rigths reserved. </p>
+            </div>
+            <div>
+                <p>Images provenant de Pixabay.com</p>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+        <script src="script_foret.js"></script>
+    </body>
+</html>

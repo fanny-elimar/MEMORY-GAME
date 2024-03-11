@@ -1,31 +1,9 @@
 "use strict";
 /* récupération des éléments HTML */
 const gameBoard = document.getElementById('game-board');
-const accueil = document.getElementById('accueil');
-const jeu = document.getElementById('jeu');
-const boutonRejouer = document.getElementById('rejouer');
-let cards;
+const bravo = document.getElementById('bravo');
 /* import des images */
-const cardsSavane = [
-    'Images\\savane\\elephant.webp',
-    'Images\\savane\\rhinoceros.webp',
-    'Images\\savane\\impala.webp',
-    'Images\\savane\\hippopotame.webp',
-    'Images\\savane\\gnou.webp',
-    'Images\\savane\\girafe.webp',
-    'Images\\savane\\zebres.webp',
-    'Images\\savane\\lion.webp',
-    'Images\\savane\\guepard.webp',
-    'Images\\savane\\elephants.webp',
-    'Images\\savane\\hyenes.webp',
-    'Images\\savane\\lionceau.webp',
-    'Images\\savane\\zebres_girafes.webp',
-    'Images\\savane\\gazelles.webp',
-    'Images\\savane\\leopard.webp',
-    'Images\\savane\\singe.webp',
-    'Images\\savane\\buffle.webp'
-];
-const cardsBanquise = [
+const cards = [
     'Images\\banquise\\baleine.webp',
     'Images\\banquise\\loup.webp',
     'Images\\banquise\\macareux.webp',
@@ -41,70 +19,40 @@ const cardsBanquise = [
     'Images\\banquise\\renard.webp',
     'Images\\banquise\\renard2.webp',
     'Images\\banquise\\renne.webp',
-    'Images\\banquise\\sterne.webp'
+    'Images\\banquise\\sterne.webp',
 ];
-/* Chargement de la zone de jeu */
+/* Chargement de la page */
 function load() {
-    const choixNiveau = document.querySelector('.choix_niveau');
-    boutonRejouer.setAttribute('style', 'display:none');
-    choixNiveau.setAttribute('style', 'display:flex');
-    while (gameBoard.firstChild) {
-        gameBoard.removeChild(gameBoard.firstChild);
-    }
-    gameBoard === null || gameBoard === void 0 ? void 0 : gameBoard.removeAttribute('class');
-    allCards.length = 0;
+    window.location.reload();
 }
-let theme;
-const boutonThemes = [];
-const boutonSavane = document.getElementById('savane');
-const boutonBanquise = document.getElementById('banquise');
-const boutonForet = document.getElementById('foret');
-const boutonMix = document.getElementById('mix');
-boutonThemes.push(boutonSavane, boutonBanquise, boutonForet, boutonMix);
-for (let i = 0; i <= boutonThemes.length; i++) {
-    boutonThemes[i].addEventListener('click', function () {
-        theme = this.dataset.themes;
-        accueil === null || accueil === void 0 ? void 0 : accueil.setAttribute('style', 'display:none');
-        jeu === null || jeu === void 0 ? void 0 : jeu.classList.add('container');
-        jeu === null || jeu === void 0 ? void 0 : jeu.classList.remove('hidden');
-        choisirNiveau();
-        console.log(theme);
-        if (theme === 'savane') {
-            cards = cardsSavane;
-        }
-        else if (theme === 'banquise') {
-            cards = cardsBanquise;
-        }
-        console.log(cards);
+/* Choix du nombre de paires */
+let nbOfPairs;
+const boutons = [];
+const bouton2 = document.getElementById('2paires');
+const bouton3 = document.getElementById('3paires');
+const bouton4 = document.getElementById('4paires');
+const bouton5 = document.getElementById('5paires');
+const bouton6 = document.getElementById('6paires');
+const bouton8 = document.getElementById('8paires');
+const bouton10 = document.getElementById('10paires');
+const bouton12 = document.getElementById('12paires');
+const bouton14 = document.getElementById('14paires');
+const bouton16 = document.getElementById('16paires');
+boutons.push(bouton2, bouton3, bouton4, bouton5, bouton6, bouton8, bouton10, bouton12, bouton14, bouton16);
+for (let i = 0; i <= boutons.length; i++) {
+    boutons[i].addEventListener('click', function () {
+        let buttonValue;
+        buttonValue = this.dataset.paires;
+        nbOfPairs = Number(buttonValue);
+        this.style.backgroundColor = 'orange';
+        console.log(nbOfPairs);
+        Start();
     });
 }
-function choisirNiveau() {
-    var _a;
-    let nbOfPairs = 0;
-    const boutons = [];
-    const bouton2 = document.getElementById('2paires');
-    const bouton3 = document.getElementById('3paires');
-    const bouton4 = document.getElementById('4paires');
-    const bouton5 = document.getElementById('5paires');
-    const bouton6 = document.getElementById('6paires');
-    const bouton8 = document.getElementById('8paires');
-    const bouton10 = document.getElementById('10paires');
-    const bouton12 = document.getElementById('12paires');
-    const bouton14 = document.getElementById('14paires');
-    const bouton16 = document.getElementById('16paires');
-    boutons.push(bouton2, bouton3, bouton4, bouton5, bouton6, bouton8, bouton10, bouton12, bouton14, bouton16);
-    for (let i = 0; i <= boutons.length; i++) {
-        (_a = boutons[i]) === null || _a === void 0 ? void 0 : _a.addEventListener('click', function () {
-            let buttonValue;
-            buttonValue = this.dataset.paires;
-            nbOfPairs = Number(buttonValue);
-            Start(nbOfPairs);
-        });
-    }
-}
-/* Récupération du nombre de paires */
-function Start(nbOfPairs) {
-    const choixNiveau = document.querySelector('.choix_niveau');
+/* Lancement du jeu - modification de l'affichage des boutons */
+function Start() {
+    const boutonRejouer = document.getElementById('rejouer');
+    const choixNiveau = document.querySelector('.gestionJeu--choixNiveau');
     boutonRejouer.setAttribute('style', 'display:inline-block');
     choixNiveau.setAttribute('style', 'display:none');
     /* Gestion de l'affichage des cartes */
@@ -114,6 +62,9 @@ function Start(nbOfPairs) {
         card.classList.add('unfound');
         card.dataset.value = CardUrl;
         card.addEventListener('click', onCardClick);
+        card.ondragstart = function () {
+            return false;
+        };
         const cardContent = document.createElement('img');
         cardContent.classList.add('card-content');
         cardContent.src = `${CardUrl}`;
@@ -139,15 +90,13 @@ function Start(nbOfPairs) {
     const shuffledCards = shuffleArray(cards);
     cardsToPlay = selectCards(nbOfPairs, shuffledCards);
     function selectCards(nb, array) {
-        const array2 = array.splice(nb, array.length - nb);
+        array.splice(nb, array.length - nb);
         return array;
     }
     /* Dupliquer les cartes sélectionnées pour former des paires */
-    let allCards = [];
-    allCards = duplicateArray(cardsToPlay);
+    let allCards = duplicateArray(cardsToPlay);
     allCards = shuffleArray(allCards);
-    console.log(allCards);
-    /* Afficher les cartes - responsive */
+    /* Afficher les cartes */
     allCards.forEach(card => {
         const cardHtml = createCard(card);
         if (gameBoard !== null) {
@@ -204,7 +153,7 @@ function Start(nbOfPairs) {
             card.classList.add('flip');
             card.removeEventListener('click', onCardClick);
             selectedCards.push(card);
-            if (selectedCards.length == 2) {
+            if (selectedCards.length === 2) {
                 /* Afficher le nombre d'essais */
                 nbEssais += 1;
                 const nbEssaisStr = nbEssais.toString();
@@ -219,7 +168,7 @@ function Start(nbOfPairs) {
                     }
                 }
                 setTimeout(() => {
-                    if (selectedCards[0].dataset.value == selectedCards[1].dataset.value) {
+                    if (selectedCards[0].dataset.value === selectedCards[1].dataset.value) {
                         // on a trouvé une paire
                         selectedCards[0].classList.add('matched');
                         selectedCards[1].classList.add('matched');
@@ -229,9 +178,15 @@ function Start(nbOfPairs) {
                         selectedCards[1].removeEventListener('click', onCardClick);
                         const allCardNotFound = document.querySelectorAll('.unfound');
                         console.log(allCardNotFound.length);
-                        if (allCardNotFound.length == 0) {
+                        if (allCardNotFound.length === 0) {
                             // Le joueur a gagné
-                            alert('Bravo, vous avez gagné');
+                            bravo === null || bravo === void 0 ? void 0 : bravo.classList.remove('hidden');
+                            confetti({
+                                particleCount: 200,
+                                spread: 200,
+                                origin: { y: 0.6 }
+                            });
+                            setTimeout(() => { bravo === null || bravo === void 0 ? void 0 : bravo.classList.add('hidden'); }, 10000);
                         }
                     }
                     else {
